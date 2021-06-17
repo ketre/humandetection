@@ -1,0 +1,22 @@
+{
+  "name": "p5serial",
+  "version": "1.0.0",
+  "description": "[See the live demo](https://www.codespeedy.com/ml/humandetect.html)",
+  "main": "detect.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ketre/humandetection.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ketre/humandetection/issues"
+  },
+  "homepage": "https://github.com/ketre/humandetection#readme",
+  "dependencies": {
+    "p5.serialserver": "0.0.29"
+  }
+}
