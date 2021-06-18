@@ -71,7 +71,8 @@
     }
 
     try {
-      this.socket = new WebSocket("ws://" + this.hostname + ":" + this.serverport);
+      this.socket = new WebSocket("wss://" + this.hostname + ":" + this.serverport);
+      // this.socket = new WebSocket("ws://" + this.hostname + ":" + this.serverport);
       console.log(("ws://" + this.hostname + ":" + this.serverport));
     } catch (err) {
       if (typeof self.errorCallback !== "undefined") {
