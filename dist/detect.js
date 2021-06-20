@@ -9,7 +9,7 @@ let flippedVideo;
 // To store the classification
 let label = "";
 let serial;// variable to hold an instance of the serialport library
-let portName = '/dev/cu.usbmodem14201';// fill in your serial port name here
+// let portName = '/dev/cu.usbmodem14201';// fill in your serial port name here
 let outByte = 10;// default for outgoing data
 
 // Load the model first
@@ -70,7 +70,7 @@ function classifyVideo() {
   classifier.classify(flippedVideo, gotResult);
 }
 
-// let socket = io();
+let socket = io.connect('https://localhost:8443')
 // const socket = io("wss://localhost:3000");
 
 
@@ -84,11 +84,9 @@ function gotResult(error, results) {
   // console.log(results[0]);
   label = results[0].label;
 
-
   if (label == "person") {
-    socket.on('arduino data', (data) =>{
-    socket.emit('human', "on")
-  })
+    socket.emit('human', 2)
+
     // outByte = 2;
     // console.log('outByte: ', outByte)
     // serial.write(outByte);

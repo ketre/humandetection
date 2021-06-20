@@ -3,9 +3,12 @@ const https = require('https');
 const express = require('express');
 // let serialserver = require('p5.serialserver');
 const SerialPort = require('serialport');
-const Readline = require('@serialport/parser-readline');
-const port = new SerialPort('/dev/cu.usbmodem14201');
-const parser = port.pipe(new Readline({ delimeter: '\r\n' }));
+// const Readline = require('@serialport/parser-readline');
+// const port = new SerialPort('/dev/cu.usbmodem14201');
+const port = new SerialPort("/dev/cu.usbmodem14201", { 
+  baudrate: 9600
+});
+// const parser = port.pipe(new Readline({ delimeter: '\r\n' }));
 
 const app = express();
 app.use(express.static(process.env.SERVE_DIRECTORY || 'dist'));
@@ -27,18 +30,13 @@ const { Socket } = require('dgram');
 
 io.on('connection', (socket) => {
   // socket.emit('welcome', socket.id);
-
-  parser.on('data', (data)=>{
-      console.log(data)
-      socket.emit('arduino data', data);
-  })
+console.log('sockets listening')
+  
   socket.on('human', (detection) => {
     console.log(detection)
-    port.write(detection + "E")
+    port.write(detection)
   })
-  socket.on('disconnect', () => {
-    console.log('left: ' + socket.id)
-  })
+  
 })
 
 // serialserver.start(8081);
